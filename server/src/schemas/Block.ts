@@ -1,19 +1,20 @@
 import mongoose, { Document, Schema } from 'mongoose'
 
-type Block = Document & {}
+type Block = {
+  content: string
+  type: 'text' | 'image' | 'link'
+} & Document
 
 const BlockSchema = new Schema(
   {
-    title: {
-      type: String,
-      lowercase: true,
-      trim: true,
-      unique: true,
-      required: true
-    },
     content: {
       type: String,
       required: true
+    },
+    type: {
+      type: String,
+      required: true,
+      default: 'text'
     }
   },
   {

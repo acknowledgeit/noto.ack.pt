@@ -2,5 +2,5 @@
   "watch": ["src"],
   "ext": ".ts,.js",
   "ignore": [],
-  "exec": "node --inspect -r dotenv/config -r sucrase/register"
+  "exec": "node --inspect -r dotenv/config -r tsconfig-paths/register -r sucrase/register"
 }
