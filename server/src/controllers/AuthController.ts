@@ -8,24 +8,8 @@ class AuthController {
   constructor() {
     this.routes = Router()
 
-    this.routes.get('/', this.session)
-    this.routes.post('/login', this.login)
+    this.routes.get('/', authorize, this.session)
     this.routes.post('/logout', authorize, this.logout)
-    this.routes.post('/recover', this.recover)
-  }
-
-  async login(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ): Promise<Response | void> {
-    let user = new User({
-      _id: 12394017517024,
-      name: 'André',
-      email: 'andre@example.com'
-    })
-
-    res.json(user)
   }
 
   async logout(
@@ -33,15 +17,8 @@ class AuthController {
     res: Response,
     next: NextFunction
   ): Promise<Response | void> {
-    res.status(200).end()
-  }
-
-  async register(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ): Promise<Response | void> {
-    res.status(501).end()
+    // TODO: Invalidate incoming JWT and return
+    return res.status(200).end()
   }
 
   async session(
@@ -49,15 +26,20 @@ class AuthController {
     res: Response,
     next: NextFunction
   ): Promise<Response | void> {
-    res.status(501).end()
+    // TODO: Validate incoming JWT and return session information
+    return res.status(501).end()
   }
 
-  async recover(
+  async googleCallback(
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<Response | void> {
-    res.status(501).end()
+    // TODO: Send request to google to exchange code for token
+    // TODO: Create/retrieve matching Noto user account (by email)
+    // TODO: Store Google Authentication token in Noto user account (with timestamp?)
+    // TODO: Generate own JWT and return
+    return res.status(501).end()
   }
 }
 
