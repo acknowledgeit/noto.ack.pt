@@ -1,6 +1,6 @@
 import mongoose, { Document, Schema } from 'mongoose'
 
-type Block = {
+export type Block = {
   content: string
   type: 'text' | 'image' | 'link'
 } & Document

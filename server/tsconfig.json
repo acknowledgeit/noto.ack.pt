@@ -18,7 +18,8 @@
     "paths": {
       "@controllers/*": ["controllers/*"],
       "@services/*": ["services/*"],
-      "@schemas/*": ["schemas/*"]
+      "@schemas/*": ["schemas/*"],
+      "@middleware/*": ["middleware/*"]
     }
   },
   "files": ["src/middleware/authorize.d.ts"],

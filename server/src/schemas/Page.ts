@@ -1,6 +1,10 @@
 import mongoose, { Document, Schema } from 'mongoose'
+import { Block } from '@schemas/Block'
 
-type Page = Document & {}
+export type Page = {
+  title: string
+  blocks: Array<Block>
+} & Document
 
 const PageSchema = new Schema(
   {

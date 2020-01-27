@@ -1,7 +1,10 @@
 import mongoose, { Document, Schema } from 'mongoose'
+import { Page } from '@schemas/Page'
 
-type User = {
+export type User = {
   name: string
+  email: string
+  pages: Array<Page>
 } & Document
 
 const UserSchema = new Schema(
