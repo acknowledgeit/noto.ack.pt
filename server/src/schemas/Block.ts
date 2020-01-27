@@ -15,6 +15,14 @@ const BlockSchema = new Schema(
       type: String,
       required: true,
       default: 'text'
+    },
+    createdBy: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    updatedBy: {
+      type: Schema.Types.ObjectId,
+      ref: 'Page'
     }
   },
   {

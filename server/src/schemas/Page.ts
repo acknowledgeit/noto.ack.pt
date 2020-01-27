@@ -15,6 +15,14 @@ const PageSchema = new Schema(
       unique: true,
       required: true
     },
+    createdBy: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    updatedBy: {
+      type: Schema.Types.ObjectId,
+      ref: 'Page'
+    },
     blocks: [
       {
         block: {
