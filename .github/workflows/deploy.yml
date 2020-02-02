@@ -1,0 +1,61 @@
+name: Deploy to GCP
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  PROJECT: acknowledge
+  APP: noto
+
+jobs:
+  deploy_client:
+    name: Deploy client to Cloud Storage
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      
+    - name: Change working directory
+      run: cd ./client
+      
+    - name: Build
+      run: npm build
+     
+  deploy_server:
+    name: Deploy server to Cloud Run
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      
+    - name: Change working directory
+      run: cd ./server
+      
+    - name: Get package version
+      id: package
+      run: echo ::set-output name=version::$(echo $(node -p -e "require('./package.json').version"))
+      
+    - name: Build Docker image
+      run: docker build . --file Dockerfile -t eu.gcr.io/${PROJECT}/${APP}:latest -t eu.gcr.io/${PROJECT}/${APP}:${{steps.package.outputs.version}}
+      
+    - name: Setup gcloud environment
+      uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+      with:
+        service_account_email: ${{ secrets.GCLOUD_EMAIL }}  
+        service_account_key: ${{ secrets.GCLOUD_AUTH }}
+    
+    - name: Authenticate Docker with gcloud
+      run: gcloud auth configure-docker eu.gcr.io --quiet
+    
+    - name: Push docker images to gcr
+      run: |
+        docker push eu.gcr.io/${PROJECT}/${APP}:latest
+        docker push eu.gcr.io/${PROJECT}/${APP}:${{steps.package.outputs.version}}
+        
+    - name: Deploy new revision to Cloud Run
+      run: |
+        gcloud run deploy ${APP} --project ${PROJECT} --image eu.gcr.io/${PROJECT}/${APP}:${{steps.package.outputs.version}} --platform managed --region europe-west4 --memory 128Mi --allow-unauthenticated --quiet
