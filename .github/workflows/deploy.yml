@@ -26,6 +26,7 @@ jobs:
 
       - name: Deploy to Cloud Storage
         run: gsutil cp -a public-read -r ./dist gs://noto.ack.pt/
+        working-directory: ./client
 
   deploy_server:
     name: Deploy server to Cloud Run
