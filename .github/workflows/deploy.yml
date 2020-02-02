@@ -31,7 +31,7 @@ jobs:
           service_account_key: ${{ secrets.GCLOUD_AUTH }}
 
       - name: Deploy to Cloud Storage
-        run: gsutil cp -r ./dist gs://noto.ack.pt/
+        run: gsutil -m cp -r ./dist/** gs://noto.ack.pt/
         working-directory: ./client
 
   deploy_server:
