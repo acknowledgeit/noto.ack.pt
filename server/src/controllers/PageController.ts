@@ -32,20 +32,34 @@ class PageController {
       return res.json(page)
     } catch (e) {
       return res.status(400).json({
-        error: { type: 'FAILED_PAGE_GET', msg: 'Failed to retrieve page' }
+        error: {
+          type: 'FAILED_PAGE_GET',
+          msg: 'Failed to retrieve page',
+          details: e
+        }
       })
     }
   }
 
   async create(req: Request, res: Response): Promise<Response> {
-    let page = new Page({
-      title: req.body.title,
-      content: req.body.content
-    })
+    try {
+      let page = new Page({
+        title: req.body.title,
+        content: req.body.content
+      })
 
-    let pages = await Page.create([page])
+      let pages = await Page.create([page])
 
-    return res.status(201).json(pages)
+      return res.status(201).json(pages)
+    } catch (e) {
+      return res.status(400).json({
+        error: {
+          type: 'FAILED_PAGE_CREATE',
+          msg: 'Failed to create page',
+          details: e
+        }
+      })
+    }
   }
 
   async delete(req: Request, res: Response): Promise<Response | void> {
@@ -62,7 +76,11 @@ class PageController {
       return res.status(200).end()
     } catch (e) {
       return res.status(400).json({
-        error: { type: 'FAILED_PAGE_DELETE', msg: 'Failed to delete page' }
+        error: {
+          type: 'FAILED_PAGE_DELETE',
+          msg: 'Failed to delete page',
+          details: e
+        }
       })
     }
   }
