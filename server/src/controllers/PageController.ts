@@ -1,5 +1,5 @@
 import { Request, Response, Router } from 'express'
-import Page from '@schemas/Page'
+import Page from '../schemas/Page'
 
 class PageController {
   routes: Router

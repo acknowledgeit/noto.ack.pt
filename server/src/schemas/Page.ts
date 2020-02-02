@@ -1,5 +1,5 @@
 import mongoose, { Document, Schema } from 'mongoose'
-import { Block } from '@schemas/Block'
+import { Block } from './Block'
 
 export type Page = {
   title: string

@@ -14,13 +14,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "forceConsistentCasingInFileNames": true,
-    "noImplicitAny": true,
-    "paths": {
-      "@controllers/*": ["controllers/*"],
-      "@services/*": ["services/*"],
-      "@schemas/*": ["schemas/*"],
-      "@middleware/*": ["middleware/*"]
-    }
+    "noImplicitAny": true
   },
   "files": ["src/middleware/authorize.d.ts"],
   "include": ["src", "tests"]

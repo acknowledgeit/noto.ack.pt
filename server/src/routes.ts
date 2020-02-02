@@ -1,7 +1,7 @@
 import { Router } from 'express'
-import AuthController from '@controllers/AuthController'
-import BlockController from '@controllers/BlockController'
-import PageController from '@controllers/PageController'
+import AuthController from './controllers/AuthController'
+import BlockController from './controllers/BlockController'
+import PageController from './controllers/PageController'
 
 const routes = Router()
 

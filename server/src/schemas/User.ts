@@ -1,5 +1,5 @@
 import mongoose, { Document, Schema } from 'mongoose'
-import { Page } from '@schemas/Page'
+import { Page } from './Page'
 
 export type User = {
   name: string

@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction } from 'express'
-import User from '@schemas/User'
-import authorize from '@middleware/authorize'
+import User from '../schemas/User'
+import authorize from '../middleware/authorize'
 
 class AuthController {
   routes: Router

@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express'
-import Block from '@schemas/Block'
+import Block from '../schemas/Block'
 
 class BlockController {
   routes: Router
