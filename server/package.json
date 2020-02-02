@@ -1,7 +1,7 @@
 {
-  "name": "noto",
+  "name": "noto-server",
   "version": "0.0.1",
-  "description": "Noto",
+  "description": "Noto - Server",
   "private": true,
   "main": "index.js",
   "scripts": {

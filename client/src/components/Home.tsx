@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Block from './Block'
 
-const API = 'http://localhost:8080/block'
+const API = 'http://api.noto.ack.pt/block'
 
 class Home extends Component<{}, { blocks: any[] }> {
   constructor(props: any) {

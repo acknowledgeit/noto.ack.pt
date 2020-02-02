@@ -21,8 +21,11 @@ jobs:
       - name: Build
         run: |
           npm ci
-          npm build
+          npm run build
         working-directory: ./client
+
+      - name: Deploy to Cloud Storage
+        run: gsutil cp -a public-read -r ./dist gs://noto.ack.pt/
 
   deploy_server:
     name: Deploy server to Cloud Run

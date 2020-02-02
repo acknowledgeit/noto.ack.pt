@@ -4,8 +4,7 @@ import mongoose from 'mongoose'
 
 import routes from './routes'
 
-const PORT = process.env.PORT || 8080
-const DB_URL = process.env.DB_URL || 'mongodb://localhost/noto'
+const { PORT = 8080, DB_URL = 'mongodb://localhost/noto' } = process.env
 
 const app = express()
 app.use(express.json())
